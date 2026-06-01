@@ -8,5 +8,6 @@ export const getDbClient = async () => {
         connectionString: process.env.DATABASE_URL,
     });
     await client.connect();
+    console.log('DB is connected')
     return client;
 };

@@ -33,7 +33,9 @@ router.post('/reserve-dose', async (req: Request, res: Response) => {
 
     try {
         client = await getDbClient();
-
+        //semaphore for check stock and decrement stock: -> use a flag for lock and unlock
+        //let lock= false
+        
         // 1. Check stock
         const stockRes = await client.query('SELECT count FROM inventory WHERE item_name = $1', ['Pfizer-Batch-A']);
         const currentStock = stockRes.rows[0].count;
